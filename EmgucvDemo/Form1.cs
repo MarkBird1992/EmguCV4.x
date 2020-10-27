@@ -18,6 +18,7 @@ using Emgu.CV.CvEnum;
 using Emgu.CV.OCR;
 using ClosedXML.Excel;
 using Emgu.CV.UI;
+using System.Globalization;
 
 namespace EmgucvDemo
 {
@@ -172,7 +173,9 @@ namespace EmgucvDemo
 
                 pictureBox1.Image = imgROI.ToBitmap();
                 AddImage(imgROI, "ROI Image");
-
+                String timeStamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds().ToString();
+                String path = "C:\\images\\board\\" + timeStamp + ".png";
+                imgROI.Save(path);
             }
             catch (Exception ex)
             {

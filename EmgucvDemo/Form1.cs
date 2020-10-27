@@ -893,7 +893,7 @@ namespace EmgucvDemo
             }
         }
 
-        private void ApplyMultiObjectDetectionTM(float threshold = 0.1f)
+        private void ApplyMultiObjectDetectionTM(float threshold = 0.12f)
         {
             try
             {

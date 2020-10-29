@@ -45,13 +45,40 @@ namespace EmgucvDemo
         {
             try
             {
+                System.Console.WriteLine("this is a test");
                 imgList.Clear();
                 OpenFileDialog dialog = new OpenFileDialog();
-                if(dialog.ShowDialog() == DialogResult.OK)
+                if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     var img = new Image<Bgr, byte>(dialog.FileName);
+                    ///saturate the image
+                    Image<Hls, byte> img2 = img.Convert<Hls, byte>();
+                    // make sure the image isn't null
+                    //make sure the image isn't null
+                    //make sure the image isn't null
+
+                    if (img2 != null)
+                    {
+                        //use a copy as not to adjust the original image
+                        using (Image<Hls, Byte> Temp = img2.Copy())
+                        {
+                            //Temp[0] += 100;
+                            //Temp[1] += 50;
+                            Temp[2] += 150;
+                            Temp.Save("C:\\images\\test2.png");
+                            img = Temp.Convert<Bgr, byte>();
+                        }
+                    }
+
+                    img2.Save("C:\\images\\test.png");
+
+
+
+
                     AddImage(img, "Input");
                     pictureBox1.Image = img.AsBitmap();
+
+
                 }
             }
             catch (Exception ex)
